@@ -70,7 +70,6 @@ A modern, full-stack personal finance management application built with React.js
 | Vite | Build Tool |
 | Tailwind CSS | Styling |
 | React Router v6 | Navigation |
-| Axios | HTTP Client |
 | Recharts | Data Visualization |
 | React Icons | Icon Library |
 | React Hot Toast | Notifications |
@@ -83,12 +82,10 @@ A modern, full-stack personal finance management application built with React.js
 |------------|---------|
 | Node.js | Runtime |
 | Express.js | Web Framework |
-| Sequelize | ORM |
 | MySQL | Database |
 | JWT | Authentication |
 | bcryptjs | Password Hashing |
 | express-validator | Validation |
-| CORS | Cross-Origin Support |
 
 </td>
 </tr>
