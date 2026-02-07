@@ -1,10 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const { incomeController } = require('../controllers');
-const { protect } = require('../middleware/auth');
+const { auth } = require('../middleware');
 
 // All routes are protected
-router.use(protect);
+router.use(auth);
 
 // Summary route (before :id to avoid conflict)
 router.get('/summary', incomeController.getSummary);
