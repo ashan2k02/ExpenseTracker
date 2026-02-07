@@ -147,3 +147,41 @@ export const reportService = {
     return response.data;
   },
 };
+
+// ============================================================
+// INCOME SERVICE
+// ============================================================
+export const incomeService = {
+  getAll: async (params = {}) => {
+    const response = await api.get('/incomes', { params });
+    return response.data;
+  },
+
+  getById: async (id) => {
+    const response = await api.get(`/incomes/${id}`);
+    return response.data;
+  },
+
+  getSummary: async (month, year) => {
+    const params = {};
+    if (month) params.month = month;
+    if (year) params.year = year;
+    const response = await api.get('/incomes/summary', { params });
+    return response.data;
+  },
+
+  create: async (data) => {
+    const response = await api.post('/incomes', data);
+    return response.data;
+  },
+
+  update: async (id, data) => {
+    const response = await api.put(`/incomes/${id}`, data);
+    return response.data;
+  },
+
+  delete: async (id) => {
+    const response = await api.delete(`/incomes/${id}`);
+    return response.data;
+  },
+};

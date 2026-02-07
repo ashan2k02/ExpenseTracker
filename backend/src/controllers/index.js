@@ -3,6 +3,7 @@ const expenseController = require('./expenseController');
 const categoryController = require('./categoryController');
 const budgetController = require('./budgetController');
 const reportController = require('./reportController');
+const incomeController = require('./incomeController');
 
 module.exports = {
   authController,
@@ -10,4 +11,5 @@ module.exports = {
   categoryController,
   budgetController,
   reportController,
+  incomeController,
 };

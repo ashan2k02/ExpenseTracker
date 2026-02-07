@@ -2,6 +2,7 @@ const User = require('./User');
 const Category = require('./Category');
 const Expense = require('./Expense');
 const Budget = require('./Budget');
+const Income = require('./Income');
 
 // Define associations
 
@@ -55,9 +56,20 @@ Budget.belongsTo(Category, {
   as: 'category',
 });
 
+// User has many Incomes
+User.hasMany(Income, {
+  foreignKey: 'user_id',
+  as: 'incomes',
+});
+Income.belongsTo(User, {
+  foreignKey: 'user_id',
+  as: 'user',
+});
+
 module.exports = {
   User,
   Category,
   Expense,
   Budget,
+  Income,
 };

@@ -3,6 +3,7 @@ const expenseRoutes = require('./expenseRoutes');
 const categoryRoutes = require('./categoryRoutes');
 const budgetRoutes = require('./budgetRoutes');
 const reportRoutes = require('./reportRoutes');
+const incomeRoutes = require('./incomeRoutes');
 
 module.exports = {
   authRoutes,
@@ -10,4 +11,5 @@ module.exports = {
   categoryRoutes,
   budgetRoutes,
   reportRoutes,
+  incomeRoutes,
 };

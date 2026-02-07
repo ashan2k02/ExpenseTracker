@@ -147,6 +147,48 @@ CREATE TABLE IF NOT EXISTS budgets (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- ============================================================
+-- TABLE: incomes
+-- Description: User income records
+-- ============================================================
+CREATE TABLE IF NOT EXISTS incomes (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  title VARCHAR(255) NOT NULL,
+  amount DECIMAL(10, 2) NOT NULL,
+  date DATE NOT NULL,
+  source ENUM(
+    'salary', 
+    'freelance', 
+    'investment', 
+    'rental', 
+    'business', 
+    'gift', 
+    'refund', 
+    'other'
+  ) DEFAULT 'salary',
+  is_recurring BOOLEAN DEFAULT FALSE,
+  recurring_frequency ENUM('weekly', 'bi-weekly', 'monthly', 'yearly') DEFAULT NULL,
+  notes TEXT DEFAULT NULL,
+  user_id INT NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  
+  -- Foreign Keys
+  CONSTRAINT fk_incomes_user 
+    FOREIGN KEY (user_id) REFERENCES users(id) 
+    ON DELETE CASCADE 
+    ON UPDATE CASCADE,
+  
+  -- Constraints
+  CONSTRAINT chk_incomes_amount CHECK (amount > 0),
+  
+  -- Indexes for query optimization
+  INDEX idx_incomes_user_id (user_id),
+  INDEX idx_incomes_date (date),
+  INDEX idx_incomes_user_date (user_id, date),
+  INDEX idx_incomes_source (source)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- ============================================================
 -- INSERT DEFAULT CATEGORIES (System-wide defaults)
 -- ============================================================
 INSERT INTO categories (name, icon, color, user_id, is_default) VALUES

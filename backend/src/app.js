@@ -10,6 +10,7 @@ const {
   categoryRoutes,
   budgetRoutes,
   reportRoutes,
+  incomeRoutes,
 } = require('./routes');
 
 const app = express();
@@ -57,6 +58,7 @@ app.use('/api/expenses', expenseRoutes);
 app.use('/api/categories', categoryRoutes);
 app.use('/api/budgets', budgetRoutes);
 app.use('/api/reports', reportRoutes);
+app.use('/api/incomes', incomeRoutes);
 
 // 404 handler
 app.use((req, res) => {

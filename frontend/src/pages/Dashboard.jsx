@@ -19,7 +19,7 @@ import {
 } from 'recharts';
 import { Card, Spinner } from '../components/ui';
 import { useAuth } from '../context';
-import { expenseService, reportService } from '../services';
+import { expenseService, reportService, incomeService } from '../services';
 import {
   HiOutlineCurrencyDollar,
   HiOutlineTrendingUp,
@@ -48,14 +48,30 @@ const Dashboard = () => {
   const fetchDashboardData = async () => {
     try {
       setLoading(true);
-      // Try to fetch from expenses summary first, fallback to reports dashboard
-      let response;
+      // Fetch both expense summary and income summary
+      let expenseResponse, incomeResponse;
+      
       try {
-        response = await expenseService.getSummary();
+        expenseResponse = await expenseService.getSummary();
       } catch {
-        response = await reportService.getDashboard();
+        expenseResponse = await reportService.getDashboard();
       }
-      setData(response.data);
+      
+      try {
+        incomeResponse = await incomeService.getSummary();
+      } catch {
+        incomeResponse = { data: { totalIncome: 0 } };
+      }
+      
+      // Merge income data into response
+      const mergedData = {
+        ...expenseResponse.data,
+        totalIncome: incomeResponse.data?.totalIncome || 0,
+        incomeCount: incomeResponse.data?.incomeCount || 0,
+        yearlyIncome: incomeResponse.data?.yearlyTotal || 0,
+      };
+      
+      setData(mergedData);
     } catch (err) {
       setError('Failed to load dashboard data');
       console.error(err);
@@ -131,8 +147,8 @@ const Dashboard = () => {
 
   const { summary, expensesByCategory, monthlyTrend, recentExpenses } = data || {};
 
-  // Calculate values
-  const totalIncome = summary?.totalIncome || summary?.monthlyBudget || 5000;
+  // Calculate values - now using real income data
+  const totalIncome = data?.totalIncome || summary?.totalIncome || 0;
   const totalExpenses = summary?.totalExpenses || summary?.monthlyTotal || 0;
   const remainingBalance = totalIncome - totalExpenses;
   const monthlyBudget = summary?.monthlyBudget || 3000;

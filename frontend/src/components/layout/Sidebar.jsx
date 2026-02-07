@@ -14,6 +14,7 @@ import {
   HiOutlineChevronRight,
   HiOutlineX,
   HiOutlineMenuAlt2,
+  HiOutlineCash,
 } from 'react-icons/hi';
 
 const Sidebar = ({ isOpen, onClose, collapsed, onToggleCollapse }) => {
@@ -33,6 +34,7 @@ const Sidebar = ({ isOpen, onClose, collapsed, onToggleCollapse }) => {
     { path: '/dashboard', label: 'Dashboard', icon: HiOutlineHome },
     { path: '/expenses/new', label: 'Add Expense', icon: HiOutlinePlusCircle },
     { path: '/expenses', label: 'All Expenses', icon: HiOutlineDocumentText },
+    { path: '/income', label: 'Income', icon: HiOutlineCash },
     { path: '/categories', label: 'Categories', icon: HiOutlineTag },
     { path: '/budgets', label: 'Budget', icon: HiOutlineCurrencyDollar },
     { path: '/reports', label: 'Reports', icon: HiOutlineChartBar },

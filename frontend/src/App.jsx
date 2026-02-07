@@ -7,6 +7,7 @@ import {
   Categories,
   Budgets,
   Reports,
+  Income,
   Login,
   Register,
   ExpenseList,
@@ -36,6 +37,7 @@ function App() {
             <Route path="expenses" element={<ExpenseList />} />
             <Route path="expenses/new" element={<ExpenseForm />} />
             <Route path="expenses/:id/edit" element={<ExpenseForm />} />
+            <Route path="income" element={<Income />} />
             <Route path="categories" element={<Categories />} />
             <Route path="budgets" element={<Budgets />} />
             <Route path="reports" element={<Reports />} />
